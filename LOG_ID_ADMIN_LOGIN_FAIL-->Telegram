@@ -2,17 +2,24 @@
 # Will trigger when a admin login fails
 # Replace "<BOT-TOKEN>" and "<CHAT_ID>"
 
-config system automation-trigger
-    edit "Report"
-        set event-type event-log
-        set logid 32002
-    next
-end
+config system automation-action
     edit "Telegram"
         set action-type webhook
         set protocol https
         set method get
         set uri "api.telegram.org/bot<BOT-TOKEN>/sendMessage?chat_id=<CHAT_ID>&text=Failed-login-Atempt@FortiGate+%%log%%"
         set port 443
+    next
+end
+config system automation-trigger
+    edit "Admin login failed"
+        set event-type event-log
+        set logid 32002
+    next
+end
+config system automation-stitch
+    edit "Admin login failed"
+        set trigger "Admin login failed"
+        set action "Telegram"
     next
 end
