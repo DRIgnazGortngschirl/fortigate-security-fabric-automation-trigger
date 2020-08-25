@@ -3,7 +3,7 @@
 # Replace "<BOT-TOKEN>" and "<CHAT_ID>"
 
 config system automation-action
-    edit "Telegram"
+    edit "Telegram-Failed-login-Atempt"
         set action-type webhook
         set protocol https
         set method get
@@ -20,6 +20,6 @@ end
 config system automation-stitch
     edit "Admin login failed"
         set trigger "Admin login failed"
-        set action "Telegram"
+        set action "Telegram-Failed-login-Atempt"
     next
 end
